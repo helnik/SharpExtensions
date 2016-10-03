@@ -17,7 +17,7 @@ namespace MyCustomExtensions
         /// Completly remove whitespaces        
         public static string RemoveWhiteSpacesCompletly(this string stringToConvert)
         {
-            return stringToConvert.Replace(" ", "");
+            return stringToConvert.Replace(" ", "").Replace("\t", "");
         }
 
         /// <summary>
