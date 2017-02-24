@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CustomExtensions
 {
-    public partial class Extensions
+    public static partial class Extensions
     {
         /// <summary>
         /// Retuns the value if key exist else add the value
