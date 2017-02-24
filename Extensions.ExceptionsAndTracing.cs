@@ -1,9 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CustomExtensions
 {
@@ -74,29 +72,37 @@ namespace CustomExtensions
 
             return log.ToString();
         }
-
+                
         public static string ToJSON(this Exception ex)
         {
             ///requires Newtonsoft.Json nuget
             Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings();
             settings.Formatting = Newtonsoft.Json.Formatting.Indented;
-            var text = Newtonsoft.Json.JsonConvert.SerializeObject(ex, settings);
-            return text;
+            string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(ex, settings);
+            return serialized;
         }
 
+        /// <summary>
+        /// writes the exception to eventlog
+        /// </summary>       
         public static void ToEventLog(this Exception ex, string eventSource, EventLogEntryType logType = EventLogEntryType.Error)
         {
             try
-            {
-                EventLog.WriteEntry(
-                    eventSource,
-                    ex.Message,                   
-                    logType);
+            {                 
+                EventLog.WriteEntry(eventSource, ex.Message, logType);
             }
             catch
             {                
                 throw new Exception("Error Logging Exception", ex);
             }
+        }
+        
+        /// <summary>
+        /// writes the exception message and stacktrace with datetime.Now prefixed
+        /// </summary>   
+        public static void TraceWriteLine(this Exception ex)
+        {
+            Trace.WriteLine($"{DateTime.Now.ToString($"yyyy - MM - dd HH: mm:ss.fff : ")} {ex.Message} : {ex.StackTrace}");
         }
     }
 }
