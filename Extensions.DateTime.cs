@@ -2,7 +2,7 @@
 
 namespace CustomExtensions
 {
-    public partial class Extensions
+    public static partial class Extensions
     {
         public static bool Between(this DateTime dt, DateTime minValue, DateTime maxValue)
         {
