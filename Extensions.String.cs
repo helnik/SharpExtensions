@@ -99,19 +99,23 @@ namespace CustomExtensions
             float result = 0;
             float.TryParse(sValue, out result);
             return result;
-        }        
+        }
+        
+        public static string TrimmedContextOrEmpty(this string sValue)
+        {
+            if (string.IsNullOrEmpty(sValue)) return string.Empty;
+            if (sValue.Trim().Equals("")) return string.Empty;
+            return sValue.Trim();
+        }
         #endregion
 
         #region Context Check
         /// <summary>
-        /// Shorter way for string.IsNullOrEmpty
+        /// Shorter and not by negation way for string.IsNullOrEmpty
         /// </summary> 
-        public static bool HasContext(this string stringToTest)
+        public static bool HasContext(this string sValue)
         {
-            if (!string.IsNullOrEmpty(stringToTest))
-                return true;
-            else
-                return false;
+            return return !string.IsNullOrEmpty(sValue);           
         }
 
         /// <summary>
