@@ -103,8 +103,7 @@ namespace CustomExtensions
         
         public static string TrimmedContextOrEmpty(this string sValue)
         {
-            if (string.IsNullOrEmpty(sValue)) return string.Empty;
-            if (sValue.Trim().Equals("")) return string.Empty;
+            if (string.IsNullOrEmpty(sValue)) return string.Empty;            
             return sValue.Trim();
         }
         #endregion
