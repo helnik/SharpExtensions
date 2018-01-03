@@ -125,6 +125,16 @@ namespace CustomExtensions
             Regex regex = new Regex(pattern);
             return regex.IsMatch(value);
         }
+        
+        /// <summary>
+        /// Checks if string is a valid number (number is defined as a decimal with digits only)
+        /// Same as Matches but pattern is specified
+        /// </summary>   
+        public static bool IsNumber (this string value)
+        {
+            Regex regex = new Regex(@"^([-+] ?)?[0-9]+(.[0-9]+)?$");
+            return regex.IsMatch(value);
+        }
         #endregion
     }
 }
