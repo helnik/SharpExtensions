@@ -127,12 +127,12 @@ namespace CustomExtensions
         }
         
         /// <summary>
-        /// Checks if string is a valid number (number is defined as a decimal with digits only)
+        /// Checks if string is a valid number (number is defined as a decimal -comma or dot sepparated- with digits only)
         /// Same as Matches but pattern is specified
         /// </summary>   
         public static bool IsNumber (this string value)
         {
-            Regex regex = new Regex(@"^([-+] ?)?[0-9]+(.[0-9]+)?$");
+            Regex regex = new Regex(@"^([-+] ?)?[0-9]+([\.\,][0-9]+)?$");
             return regex.IsMatch(value);
         }
         #endregion
