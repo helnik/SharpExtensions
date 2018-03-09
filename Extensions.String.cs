@@ -5,6 +5,20 @@ namespace CustomExtensions
 {
     public static partial class Extensions
     {
+         /// <summary>
+        /// Create a random string based on a given string and a given lenght
+        /// </summary>  
+        public static string Randomize(this string sValue, int length)
+        {
+            Random random = new Random();            
+            StringBuilder result = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                result.Append(sValue[random.Next(strToRadnomize.Length)]);
+            }
+            return result.ToString();
+        }
+        
         #region Formating
         /// <summary>
         /// Reduces the white spaces of a given string to single whitespace
