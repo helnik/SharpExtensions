@@ -133,10 +133,7 @@ namespace CustomExtensions
         }
         #endregion
 
-        #region Context Check
-        /// <summary>
-        /// Shorter and not by negation way for string.IsNullOrEmpty
-        /// </summary> 
+        #region Context        
         public static bool HasContext(this string sValue)
         {
             return return !string.IsNullOrEmpty(sValue);           
@@ -160,6 +157,32 @@ namespace CustomExtensions
         {
             Regex regex = new Regex(@"^([-+] ?)?[0-9]+([\.\,][0-9]+)?$");
             return regex.IsMatch(value);
+        }
+        
+        /// <summary>
+        /// Get the maximum occurance of a char within a string
+        /// </summary>        
+        private static long GetMaximumOccurenceOfChar(this string sValue)
+        {
+            return sValue.Length == 0 ? 0 : sValue.GroupBy(c => c).Max(group => group.Count());            
+        }
+
+        /// <summary>
+        /// Gets the char and it's occurance count within a string
+        /// </summary>        
+        /// <returns>Dictionary&#60;char&#44; long&#62;</returns>
+        private static Dictionary<char, long> GetCharsAndOccurance(this string sValue)
+        {
+            var result = new Dictionary<char, long>();
+            if (string.IsNullOrEmpty(sValue)) return result;           
+
+            foreach (var c in sValue)
+            {
+                long exists;
+                if (result.TryGetValue(c, out exists)) continue;
+                result.Add(c, sValue.Count(ch => ch.Equals(c)));                
+            }
+            return result;
         }
         #endregion
     }
