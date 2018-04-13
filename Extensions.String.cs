@@ -5,7 +5,7 @@ namespace CustomExtensions
 {
     public static partial class Extensions
     {
-         /// <summary>
+        /// <summary>
         /// Create a random string based on a given string and a given lenght
         /// </summary>  
         public static string Randomize(this string sValue, int length)
@@ -17,6 +17,17 @@ namespace CustomExtensions
                 result.Append(sValue[random.Next(strToRadnomize.Length)]);
             }
             return result.ToString();
+        }
+        
+        /// <summary>
+        /// Reverses the current string. If string is null or empty return empty string
+        /// </summary>
+        public static string Reverse(this string sValue)
+        { 
+            if (string.IsNullOrEmpty(sValue)) return string.Empty;
+            char[] array = s.ToCharArray();
+            Array.Reverse(array);
+            return new String(array);
         }
         
         #region Formating
