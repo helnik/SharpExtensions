@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpExtensions", "SharpExtensions.csproj", "{966C013E-A5A6-4106-B2E9-383408594889}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{966C013E-A5A6-4106-B2E9-383408594889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966C013E-A5A6-4106-B2E9-383408594889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966C013E-A5A6-4106-B2E9-383408594889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966C013E-A5A6-4106-B2E9-383408594889}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82A7D652-9F82-4993-8739-26953E484A95}
+	EndGlobalSection
+EndGlobal

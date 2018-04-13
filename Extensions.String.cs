@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
-namespace CustomExtensions
+namespace SharpExtensions
 {
     public static partial class Extensions
     {
+        #region Utils
         /// <summary>
-        /// Create a random string based on a given string and a given lenght
+        /// Create a random string based on a given string and a given <paramref name="length"/>
         /// </summary>  
         public static string Randomize(this string sValue, int length)
         {
             Random random = new Random();            
             StringBuilder result = new StringBuilder(length);
             for (int i = 0; i < length; i++)
-            {
-                result.Append(sValue[random.Next(strToRadnomize.Length)]);
-            }
+                result.Append(sValue[random.Next(sValue.Length)]);
             return result.ToString();
         }
         
@@ -25,11 +27,12 @@ namespace CustomExtensions
         public static string Reverse(this string sValue)
         { 
             if (string.IsNullOrEmpty(sValue)) return string.Empty;
-            char[] array = s.ToCharArray();
+            char[] array = sValue.ToCharArray();
             Array.Reverse(array);
             return new String(array);
         }
-        
+        #endregion
+
         #region Formating
         /// <summary>
         /// Reduces the white spaces of a given string to single whitespace
@@ -51,15 +54,11 @@ namespace CustomExtensions
         /// Returns the 'x' Right chars of the string
         /// </summary>        
         public static string Right(this string sValue, int maxLength)
-        {            
+        {
             if (string.IsNullOrEmpty(sValue))
-            {                
                 sValue = string.Empty;
-            }
             else if (sValue.Length > maxLength)
-            {                
                 sValue = sValue.Substring(sValue.Length - maxLength, maxLength);
-            }            
             return sValue;
         }
 
@@ -67,15 +66,11 @@ namespace CustomExtensions
         /// Returns the 'x' Left chars of the string
         /// </summary> 
         public static string Left(this string sValue, int maxLength)
-        {            
+        {
             if (string.IsNullOrEmpty(sValue))
-            {                
                 sValue = string.Empty;
-            }
             else if (sValue.Length > maxLength)
-            {                
                 sValue = sValue.Substring(0, maxLength);
-            }            
             return sValue;
         }
 
@@ -89,8 +84,7 @@ namespace CustomExtensions
             {
                 if (c != charToEliminate)
                     break;
-                else
-                    counter++;
+                counter++;
             }
             sValue = sValue.Substring(counter, sValue.Length - counter);
             return sValue;
@@ -100,43 +94,38 @@ namespace CustomExtensions
         #region ToSomething
         public static int ToIntOrZero(this string sValue)
         {
-            int result = 0;
-            int.TryParse(sValue, out result);
+            int.TryParse(sValue, out int result);
             return result;
         }
 
         public static decimal ToDecimalOrZero(this string sValue)
         {
-            decimal result = 0;
-            decimal.TryParse(sValue, out result);
+            decimal.TryParse(sValue, out var result);
             return result;
         }
 
         public static double ToDoubleOrZero(this string sValue)
         {
-            double result = 0;
-            double.TryParse(sValue, out result);
+            double.TryParse(sValue, out var result);
             return result;
         }
 
         public static float ToFloatOrZero(this string sValue)
         {
-            float result = 0;
-            float.TryParse(sValue, out result);
+            float.TryParse(sValue, out var result);
             return result;
         }
         
         public static string TrimmedContextOrEmpty(this string sValue)
         {
-            if (string.IsNullOrEmpty(sValue)) return string.Empty;            
-            return sValue.Trim();
+            return string.IsNullOrEmpty(sValue) ? string.Empty : sValue.Trim();
         }
         #endregion
 
         #region Context        
         public static bool HasContext(this string sValue)
         {
-            return return !string.IsNullOrEmpty(sValue);           
+            return !string.IsNullOrEmpty(sValue);           
         }
 
         /// <summary>
@@ -178,8 +167,8 @@ namespace CustomExtensions
 
             foreach (var c in sValue)
             {
-                long exists;
-                if (result.TryGetValue(c, out exists)) continue;
+                if (result.TryGetValue(c, out long exists))
+                    continue;
                 result.Add(c, sValue.Count(ch => ch.Equals(c)));                
             }
             return result;

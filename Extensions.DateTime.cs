@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CustomExtensions
+namespace SharpExtensions
 {
     public static partial class Extensions
     {

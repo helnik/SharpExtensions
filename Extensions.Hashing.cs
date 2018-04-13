@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace CustomExtensions
+namespace SharpExtensions
 {
     public static partial class Extensions
     {
@@ -21,7 +21,7 @@ namespace CustomExtensions
         public static string CalculateSha256HashString(this string text)
         {
             if (string.IsNullOrEmpty(text)) return string.Empty;
-            using (var sha256 = SHA256Managed.Create())
+            using (var sha256 = SHA256.Create())
             {
                 byte[] textData = Encoding.UTF8.GetBytes(text);
                 byte[] hashBytes = sha256.ComputeHash(textData);
@@ -31,7 +31,7 @@ namespace CustomExtensions
 
         private static string CalculateSha512HashString(this string text)
         {
-            using (var sha512 = SHA512Managed.Create())
+            using (var sha512 = SHA512.Create())
             {
                 byte[] textData = Encoding.UTF8.GetBytes(text);
                 byte[] hashBytes = sha512.ComputeHash(textData);

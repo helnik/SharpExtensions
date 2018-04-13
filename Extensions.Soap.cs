@@ -1,24 +1,28 @@
 ﻿using System.Web.Services.Protocols;
 
-namespace CustomExtensions
+namespace SharpExtensions
 {
     public static partial class Extensions
     {           
         public static void DisposeClientOnComplete(this SoapHttpClientProtocol client)
         {
-            if (client != null)
-            {
-                client.Dispose();
-                client = null;
-            }
+            if (client == null)
+                return;
+            client.Dispose();
+            client = null;
         }
 
         public static void DisposeClientOnException(this SoapHttpClientProtocol client)
         {
-            if (client != null)
+            if (client == null)
+                return;
+            try
             {
-                try { client.Abort(); }
-                catch { client = null; }                
+                client.Abort();
+            }
+            catch
+            {
+                client = null;
             }
         }
     }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace CustomExtensions
+namespace SharpExtensions
 {
     public static partial class Extensions
     {
@@ -9,16 +9,17 @@ namespace CustomExtensions
         {
             return collection == null || !collection.Any();
         }
-        
+
         /// <summary>
         /// Outputs the number of the elements and elements in a string 
         /// </summary>        
-        /// <param name="collection">The IEnumerable collection </param>
+        /// <param name="collection">The ICollection collection </param>
         /// <param name="separator">Separator of the elements. Default is comma followed by space </param>
         /// <returns></returns>
-        private static string ContentToString<T>(this IEnumerable<T> collection, string separator = ", ")
+        private static string ContentToString<T>(this ICollection<T> collection, string separator = ", ")
         {
-            if (collection.IsNullOrEmpty()) return $"Collection contains zero elements";
+            if (collection.IsNullOrEmpty())
+                return $"Collection contains zero elements";
             string output = string.Empty;
             bool isFirst = true;
 

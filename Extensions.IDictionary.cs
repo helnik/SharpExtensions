@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace CustomExtensions
+namespace SharpExtensions
 {
     public static partial class Extensions
     {
@@ -14,14 +10,9 @@ namespace CustomExtensions
         public static TValue AddOrUpdate<TKey, TValue>(this IDictionary<TKey, TValue> dic, TKey key, TValue value)
         {
             if (!dic.ContainsKey(key))
-            {                
                 dic.Add(key, value);
-            }
             else
-            {
                 dic[key] = value;
-            }
-
             return dic[key];
         }
 
@@ -31,10 +22,7 @@ namespace CustomExtensions
         public static TValue GetOrAdd<TKey, TValue>(this IDictionary<TKey, TValue> dic, TKey key, TValue value)
         {
             if (!dic.ContainsKey(key))
-            {
                 dic.Add(key, value);
-            }
-
             return dic[key];
         }
     }

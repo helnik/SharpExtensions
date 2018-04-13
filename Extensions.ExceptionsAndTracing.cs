@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace CustomExtensions
+namespace SharpExtensions
 {
     public static partial class Extensions
     {
@@ -72,10 +72,10 @@ namespace CustomExtensions
 
             return log.ToString();
         }
-                
-        public static string ToJSON(this Exception ex)
+
+        ///requires <see cref="Newtonsoft.Json"/> nuget
+        public static string ToJson(this Exception ex)
         {
-            ///requires Newtonsoft.Json nuget
             Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings();
             settings.Formatting = Newtonsoft.Json.Formatting.Indented;
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(ex, settings);
