@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +14,18 @@ namespace SharpExtensions
         /// </summary>  
         public static string Randomize(this string sValue, int length)
         {
-            Random random = new Random();            
+            Random random = new Random();
             StringBuilder result = new StringBuilder(length);
             for (int i = 0; i < length; i++)
                 result.Append(sValue[random.Next(sValue.Length)]);
             return result.ToString();
         }
-        
+
         /// <summary>
         /// Reverses the current string. If string is null or empty return empty string
         /// </summary>
         public static string Reverse(this string sValue)
-        { 
+        {
             if (string.IsNullOrEmpty(sValue)) return string.Empty;
             char[] array = sValue.ToCharArray();
             Array.Reverse(array);
@@ -115,7 +115,7 @@ namespace SharpExtensions
             float.TryParse(sValue, out var result);
             return result;
         }
-        
+
         public static string TrimmedContextOrEmpty(this string sValue)
         {
             return string.IsNullOrEmpty(sValue) ? string.Empty : sValue.Trim();
@@ -125,35 +125,35 @@ namespace SharpExtensions
         #region Context        
         public static bool HasContext(this string sValue)
         {
-            return !string.IsNullOrEmpty(sValue);           
+            return !string.IsNullOrEmpty(sValue);
         }
 
         /// <summary>
         /// Checks if string matches a specific pattern
         /// </summary>        
-        public static bool Matches(this string value, string pattern)
+        public static bool Matches(this string sValue, string pattern)
         {
             Regex regex = new Regex(pattern);
-            return regex.IsMatch(value);
+            return regex.IsMatch(sValue);
         }
-        
+
         /// <summary>
         /// Checks if string is a valid number (number is defined as a decimal -comma or dot sepparated- with digits only)
         /// Same as Matches but pattern is specified
         /// </summary>   
         /// <remarks>https://stackoverflow.com/a/4247184</remarks> 
-        public static bool IsNumber (this string value)
+        public static bool IsNumber(this string sValue)
         {
             Regex regex = new Regex(@"^([-+] ?)?[0-9]+([\.\,][0-9]+)?$");
-            return regex.IsMatch(value);
+            return regex.IsMatch(sValue);
         }
-        
+
         /// <summary>
         /// Get the maximum occurance of a char within a string
         /// </summary>        
         private static long GetMaximumOccurenceOfChar(this string sValue)
         {
-            return sValue.Length == 0 ? 0 : sValue.GroupBy(c => c).Max(group => group.Count());            
+            return sValue.Length == 0 ? 0 : sValue.GroupBy(c => c).Max(group => group.Count());
         }
 
         /// <summary>
@@ -163,15 +163,72 @@ namespace SharpExtensions
         private static Dictionary<char, long> GetCharsAndOccurance(this string sValue)
         {
             var result = new Dictionary<char, long>();
-            if (string.IsNullOrEmpty(sValue)) return result;           
+            if (string.IsNullOrEmpty(sValue)) return result;
 
             foreach (var c in sValue)
             {
                 if (result.TryGetValue(c, out long exists))
                     continue;
-                result.Add(c, sValue.Count(ch => ch.Equals(c)));                
+                result.Add(c, sValue.Count(ch => ch.Equals(c)));
             }
             return result;
+        }
+
+        /// <summary>
+        /// Get string value between [first] a and [last] b.
+        /// Source https://www.dotnetperls.com/between-before-after
+        /// </summary>
+        public static string Between(this string sValue, string a, string b)
+        {
+            int posA = sValue.IndexOf(a);
+            int posB = sValue.LastIndexOf(b);
+            if (posA == -1)
+            {
+                return "";
+            }
+            if (posB == -1)
+            {
+                return "";
+            }
+            int adjustedPosA = posA + a.Length;
+            if (adjustedPosA >= posB)
+            {
+                return "";
+            }
+            return sValue.Substring(adjustedPosA, posB - adjustedPosA);
+        }
+
+        /// <summary>
+        /// Get string value after [first] a.
+        /// Source https://www.dotnetperls.com/between-before-after
+        /// </summary>
+        public static string Before(this string sValue, string a)
+        {
+            int posA = sValue.IndexOf(a);
+            if (posA == -1)
+            {
+                return "";
+            }
+            return sValue.Substring(0, posA);
+        }
+
+        /// <summary>
+        /// Get string value after [last] a.
+        /// Source https://www.dotnetperls.com/between-before-after
+        /// </summary>
+        public static string After(this string sValue, string a)
+        {
+            int posA = sValue.LastIndexOf(a);
+            if (posA == -1)
+            {
+                return "";
+            }
+            int adjustedPosA = posA + a.Length;
+            if (adjustedPosA >= sValue.Length)
+            {
+                return "";
+            }
+            return sValue.Substring(adjustedPosA);
         }
         #endregion
     }
