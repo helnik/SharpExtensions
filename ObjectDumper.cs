@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SharpExtensions
 {
-    //this is an old and modified one, cannot remember original creator to give credits
+    //this was found long ago, modified, modified again, but original source/creator is lost, to give credits
     public class ObjectDumper
     {
         private readonly int _depth;
@@ -26,7 +26,7 @@ namespace SharpExtensions
             _hashListOfFoundElements = new Dictionary<object, int>();
         }
 
-        public static string Dump(object element, int depth = 6, int indentSize = 2, char indentChar = ' ')
+        public static string Dump(object element, int depth = 4, int indentSize = 2, char indentChar = ' ')
         {
             var instance = new ObjectDumper(depth, indentSize, indentChar);
             return instance.DumpElement(element, true);
