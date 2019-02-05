@@ -76,8 +76,10 @@ namespace SharpExtensions
         ///requires <see cref="Newtonsoft.Json"/> nuget
         public static string ToJson(this Exception ex)
         {
-            Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings();
-            settings.Formatting = Newtonsoft.Json.Formatting.Indented;
+            Newtonsoft.Json.JsonSerializerSettings settings = new Newtonsoft.Json.JsonSerializerSettings
+            {
+                Formatting = Newtonsoft.Json.Formatting.Indented
+            };
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(ex, settings);
             return serialized;
         }

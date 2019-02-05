@@ -16,7 +16,7 @@ namespace SharpExtensions
         /// <param name="collection">The ICollection collection </param>
         /// <param name="separator">Separator of the elements. Default is comma followed by space </param>
         /// <returns></returns>
-        private static string ContentToString<T>(this ICollection<T> collection, string separator = ", ")
+        public static string ContentToString<T>(this ICollection<T> collection, string separator = ", ")
         {
             if (collection.IsNullOrEmpty())
                 return $"Collection contains zero elements";
