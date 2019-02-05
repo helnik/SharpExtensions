@@ -49,6 +49,7 @@
     <Compile Include="Extensions.Hashing.cs" />
     <Compile Include="Extensions.IDictionary.cs" />
     <Compile Include="Extensions.IEnumerable.cs" />
+    <Compile Include="Extensions.Reflection.cs" />
     <Compile Include="Extensions.Soap.cs" />
     <Compile Include="Extensions.String.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
