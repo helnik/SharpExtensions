@@ -52,6 +52,7 @@
     <Compile Include="Extensions.Reflection.cs" />
     <Compile Include="Extensions.Soap.cs" />
     <Compile Include="Extensions.String.cs" />
+    <Compile Include="ObjectDumper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
