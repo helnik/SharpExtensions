@@ -5,6 +5,7 @@ namespace SharpExtensions
 {
     public static partial class Extensions
     {
+        //hedev
         public static IEnumerable<KeyValuePair<string, object>> EnumerateProperties<T>(this T obj)
         {
             if (obj == null) yield break;
