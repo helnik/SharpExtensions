@@ -149,7 +149,7 @@ namespace SharpExtensions
         }
 
         /// <summary>
-        /// Get the maximum occurance of a char within a string
+        /// Get the maximum occurrence of a char within a string
         /// </summary>        
         private static long GetMaximumOccurenceOfChar(this string sValue)
         {
@@ -157,10 +157,10 @@ namespace SharpExtensions
         }
 
         /// <summary>
-        /// Gets the char and it's occurance count within a string
+        /// Gets the char and it's occurrence count within a string
         /// </summary>        
         /// <returns>Dictionary&#60;char&#44; long&#62;</returns>
-        private static Dictionary<char, long> GetCharsAndOccurance(this string sValue)
+        private static Dictionary<char, long> GetCharsAndOccurrence(this string sValue)
         {
             var result = new Dictionary<char, long>();
             if (string.IsNullOrEmpty(sValue)) return result;
