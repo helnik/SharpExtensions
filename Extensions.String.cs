@@ -230,6 +230,18 @@ namespace SharpExtensions
             }
             return sValue.Substring(adjustedPosA);
         }
+
+        /// <summary>
+        ///Get the first unique char of a string (e.g. "tertrfddfg" should return e)
+        /// </summary>
+        public static string FirstUniqueChar(this string sValue)
+        {
+            return sValue
+                .GroupBy(c => c.ToString(), c => c, StringComparer.OrdinalIgnoreCase)
+                .Where(g => g.Count() == 1)
+                .Select(g => g.Key)
+                .FirstOrDefault();
+        }
         #endregion
     }
 }
