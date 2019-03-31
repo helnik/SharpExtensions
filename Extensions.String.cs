@@ -242,6 +242,32 @@ namespace SharpExtensions
                 .Select(g => g.Key)
                 .FirstOrDefault();
         }
+
+        /// <summary>
+        /// Check if a string contains at least one of the given strings
+        /// </summary>
+        /// <param name="sValue">The string to be checked</param>
+        /// <param name="stringComparison">Default stringComparison is CurrentCulture</param>
+        /// <param name="valuesToBeChecked">At least one of the strings must be contained to return true</param>
+        /// <returns></returns>
+        public static bool ContainsAny(this string sValue, StringComparison stringComparison = StringComparison.CurrentCulture,
+            params string[] valuesToBeChecked)
+        {
+            return valuesToBeChecked.Any(s => sValue.IndexOf(s, stringComparison) != -1);
+        }
+
+        /// <summary>
+        /// Check if a string contains all the given strings
+        /// </summary>
+        /// <param name="sValue">The string to be checked</param>
+        /// <param name="stringComparison">Default stringComparison is CurrentCulture</param>
+        /// <param name="valuesToBeChecked">The strings we want to check if contained</param>
+        /// <returns></returns>
+        public static bool ContainsAll(this string sValue, StringComparison stringComparison = StringComparison.CurrentCulture,
+            params string[] valuesToBeChecked)
+        {
+            return valuesToBeChecked.All(s => sValue.IndexOf(s, stringComparison) != -1);
+        }
         #endregion
     }
 }
