@@ -83,21 +83,6 @@ namespace SharpExtensions
             string serialized = Newtonsoft.Json.JsonConvert.SerializeObject(ex, settings);
             return serialized;
         }
-
-        /// <summary>
-        /// writes the exception to eventlog
-        /// </summary>       
-        public static void ToEventLog(this Exception ex, string eventSource, EventLogEntryType logType = EventLogEntryType.Error)
-        {
-            try
-            {                 
-                EventLog.WriteEntry(eventSource, ex.Message, logType);
-            }
-            catch
-            {                
-                throw new Exception("Error Logging Exception", ex);
-            }
-        }
         
         /// <summary>
         /// writes the exception message and stacktrace with datetime.Now prefixed

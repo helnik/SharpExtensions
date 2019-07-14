@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions.DateTime.cs" />
+    <Compile Include="Extensions.Delegates.cs" />
+    <Compile Include="Extensions.Diagnostics.cs" />
     <Compile Include="Extensions.ExceptionsAndTracing.cs" />
     <Compile Include="Extensions.Hashing.cs" />
     <Compile Include="Extensions.IDictionary.cs" />
