@@ -269,5 +269,29 @@ namespace SharpExtensions
             return valuesToBeChecked.All(s => sValue.IndexOf(s, stringComparison) != -1);
         }
         #endregion
+            
+            public static string ResolveVariables(this string source, IDictionary<string, string> variables, bool removeUnresolved = false)
+		{
+			if (source is null)
+			{
+				return null;
+			}
+
+			return Regex.Replace(source, @"\{[^\}]+\}", match =>
+			{
+				var reference = match.Value.Substring(1, match.Length - 2);
+
+				if (variables.TryGetValue(reference, out var value))
+				{
+					return value;
+				}
+				else if (removeUnresolved)
+				{
+					return string.Empty;
+				}
+
+				return match.Value;
+			}).Trim();
+		}
     }
 }
